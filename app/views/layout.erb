@@ -15,7 +15,13 @@
   </head>
   <body>
     <div class="wrapper">
-
+        <div class="nav">
+        <% if logged_in? %>
+        <a href='/'> All Collectables </a>
+        <a href='/'> Add a New Collectable </a>
+        <a href='/logout'> Log Out </a>
+        <%end%>
+        </div>
         <%= yield %>
 
       <footer class="branding">
