@@ -1,16 +1,16 @@
 class UsersController < ApplicationController
     
     get '/login' do
-        erb :'users/login'
+        erb :'/users/login'
     end
 
     post '/login' do
-        user = User.find_by(email: params[:email])
+        @user = User.find_by(email: params[:email])
 
-        if user && user.authenticate(params[:password])
-            session[:user_id] = user.id
+        if @user && @user.authenticate(params[:password])
+            session[:user_id] = @user.id
 
-            redirect '/users/#{user.id}'
+            redirect "/users/#{@user.id}"
         else
             redirect '/login'
         end
@@ -18,6 +18,7 @@ class UsersController < ApplicationController
 
     get '/users/:id' do
         @user = User.find_by(id: params[:id])
+        # binding.pry
         erb :'/users/show'
     end
 
@@ -28,7 +29,7 @@ class UsersController < ApplicationController
     post '/users' do
         @user = User.create(params)
         session[:user_id] = @user.id
-        redirect '/users/#{@user.id}'
+        redirect "/users/#{@user.id}"
     end
 
     get '/logout' do

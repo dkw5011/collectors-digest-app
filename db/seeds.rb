@@ -1,6 +1,3 @@
-User.destroy_all
-Collectable.destroy_all
-
 danielle = User.create(name: "Danielle", city: "Jersey City", state: "New Jersey", email: "danielle@danielle.com", password: "pw")
 
 wylie = User.create(name: "Wylie", city: "Saint Augustine", state: "Florida", email: "wylie@wylie.com", password: "pw")

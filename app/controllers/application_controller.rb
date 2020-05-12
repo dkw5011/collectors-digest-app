@@ -9,7 +9,7 @@ class ApplicationController < Sinatra::Base
     set :session_secret, "alandai"
   end
 
-  get "/" do
+  get '/' do
     if logged_in?
       redirect "/users/#{current_user.id}"
     else
@@ -24,7 +24,7 @@ class ApplicationController < Sinatra::Base
     end
 
     def current_user
-      User.find_by(id: session[:user_id])
+      @current_user ||= User.find_by(id: session[:user_id])
     end
   end
 
