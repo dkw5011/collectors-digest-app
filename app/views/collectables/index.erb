@@ -1,0 +1,7 @@
+<h1>All Collectables</h1>
+<% @collectables.each do |collectable|%>
+<h3><a href="/collectables/<% collectable.id %>"><%=collectable.name%></a></h3>
+<img src="<%= collectable.image_url %>" alt="<%= collectable.name %>" height="400" width="300">
+<p> <%= collectable.description %> </p>
+<p> <%= collectable.user.name %> </p>
+<%end%>
