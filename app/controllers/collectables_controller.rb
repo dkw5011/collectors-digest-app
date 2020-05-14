@@ -18,4 +18,21 @@ class CollectablesController < ApplicationController
         erb :"/collectables/show"
     end
 
+    get '/collectables/:id/edit' do
+        @collectable = Collectable.find_by_id(params[:id])
+        erb :"/collectables/edit"
+    end
+
+    patch '/collectables/:id' do
+        @collectable = Collectable.find_by_id(params[:id])
+        @collectable.name = params[:name]
+        @collectable.description = params[:description]
+        @collectable.image_url = params[:image_url]
+        @collectable.initial_cost = params[:initial_cost]
+        @collectable.current_appraisel = params[:current_appraisel]
+        @collectable.save
+        redirect to "/collectables/#{@collectable.id}"
+    end
+
+
 end
