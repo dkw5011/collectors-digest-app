@@ -10,7 +10,7 @@ class CollectablesController < ApplicationController
 
     post '/collectables' do
         collectable = Collectable.create(name: params[:name], description: params[:description], image_url: params[:image_url], initial_cost: params[initial_cost], current_appraisel: params[:current_appraisel], user_id: current_user.id)
-        redirect "/collectables/#{collectable.id}"
+        redirect "/collectables/#{@collectable.id}"
     end
 
     get '/collectables/:id' do
@@ -19,7 +19,7 @@ class CollectablesController < ApplicationController
     end
 
     get '/collectables/:id/edit' do
-        @collectable = Collectable.find_by_id(params[:id])
+        @collectable = Collectable.find(params[:id])
         erb :"/collectables/edit"
     end
 

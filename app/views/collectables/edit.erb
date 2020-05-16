@@ -5,9 +5,9 @@
   <label for="name">Name:</label>
   <input type="text" name="name" value="<%= @collectable.name %>">
   <label for="description">Description:</label>
-  <textarea name="description" style="width:auto; height:auto"><%= @collectable.description%>
+  <textarea name="description" style="width:auto; height:auto"><%= @collectable.description%></textarea>
   <label for="image_url">Image URL:</label>
-  <input type="text" name="image_url" value="<% @collectable.image_url%>">
+  <input type="text" name="image_url" value="<%= @collectable.image_url %>">
   <label for="initial_cost">Initial Cost:</label>
   <input type="integer" name="initial_cost" value="<%= @collectable.initial_cost %>">
   <label for="current_appraisel">Current Appraisel:</label>
