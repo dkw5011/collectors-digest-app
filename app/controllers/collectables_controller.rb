@@ -34,5 +34,10 @@ class CollectablesController < ApplicationController
         redirect to "/collectables/#{@collectable.id}"
     end
 
+    delete '/collectables/:id' do
+        @collectable = Collectable.find_by_id(params[:id])
+        @collectable.delete
+        redirect to '/collectables'
+      end
 
 end
