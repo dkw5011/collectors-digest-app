@@ -9,8 +9,15 @@ class CollectablesController < ApplicationController
     end
 
     post '/collectables' do
-        collectable = Collectable.create(name: params[:name], description: params[:description], image_url: params[:image_url], initial_cost: params[initial_cost], current_appraisel: params[:current_appraisel], user_id: current_user.id)
+        
+        collectable = Collectable.new(name: params[:name], description: params[:description], image_url: params[:image_url], initial_cost: params[initial_cost], current_appraisel: params[:current_appraisel], user_id: current_user.id)
+        if collectable.save
+        flash[:message] = "You have successfully added a new collectable!"
         redirect "/collectables/#{@collectable.id}"
+        else
+        flash[:error_message] = "Please fill in all fields! #{collectable.errors.full_messages.to_sentence}"
+        redirect "/collectables/new"
+        end
     end
 
     get '/collectables/:id' do
