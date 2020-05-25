@@ -4,9 +4,12 @@
 <p> <%= @collectable.description %> </p>
 <p> <%= @collectable.user.name %> </p>
 
+<% if authorized?(@collectable) %>
 <a href="/collectables/<%= @collectable.id %>/edit">Edit Collectable</a>
 
 <form action="/collectables/<%= @collectable.id %>" method="post">
   <input id="hidden" type="hidden" name="_method" value="delete">
   <input type="submit" value="delete">
 </form>
+
+<% end %>

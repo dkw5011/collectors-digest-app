@@ -5,12 +5,17 @@ class CollectablesController < ApplicationController
     end
 
     get '/collectables/new' do
-        erb :"/collectables/new"
+        if logged_in?
+            erb :"/collectables/new"
+        else
+            flash[:error_message] = "Please log in to add a new collectable to your profile."
+            redirect  "/"
+        end
     end
 
     post '/collectables' do
         
-        collectable = Collectable.new(name: params[:name], description: params[:description], image_url: params[:image_url], initial_cost: params[initial_cost], current_appraisel: params[:current_appraisel], user_id: current_user.id)
+        collectable = Collectable.new(name: params[:name], description: params[:description], image_url: params[:image_url], initial_cost: params[:initial_cost], current_appraisel: params[:current_appraisel], user_id: current_user.id)
         if collectable.save
         flash[:message] = "You have successfully added a new collectable!"
         redirect "/collectables/#{@collectable.id}"
@@ -27,7 +32,12 @@ class CollectablesController < ApplicationController
 
     get '/collectables/:id/edit' do
         @collectable = Collectable.find(params[:id])
+        if authorized?(@collectable)
         erb :"/collectables/edit"
+        else
+            flash[:error_message] = "Sorry! You are not authorized to edit."
+            redirect "/collectables"
+        end
     end
 
     patch '/collectables/:id' do
