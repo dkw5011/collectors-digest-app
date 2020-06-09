@@ -7,6 +7,12 @@
 <p>City: <%= @user.city %></p>
 <p>State: <%= @user.state %></p>
 
+<% @user.collectables.each do |collectable|%>
+<h3><a href="/collectables/<%= collectable.id %>"><%=collectable.name%></a></h3>
+<img src="<%= collectable.image_url %>" alt="<%= collectable.name %>" height="400" width="300">
+<li> Initial Cost: <%= collectable.initial_cost%>   Current Appraised Value: <%= collectable.current_appraisel %></li>
+<p> <%= collectable.description %> </p>
 
+<%end%>
 
 </html>
