@@ -48,8 +48,12 @@ class CollectablesController < ApplicationController
         @collectable.image_url = params[:image_url]
         @collectable.initial_cost = params[:initial_cost]
         @collectable.current_appraisel = params[:current_appraisel]
-        @collectable.save
+        if @collectable.save
         redirect to "/collectables/#{@collectable.id}"
+        else
+        flash[:error_message] = "Please fill in all fields! #{@collectable.errors.full_messages.to_sentence}"
+        erb :"/collectables/edit"
+        end
     end
 
     delete '/collectables/:id' do
