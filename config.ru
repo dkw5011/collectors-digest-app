@@ -6,6 +6,7 @@ end
 
 use Rack::MethodOverride
 
+use CategoriesController
 use UsersController
 use CollectablesController
 
